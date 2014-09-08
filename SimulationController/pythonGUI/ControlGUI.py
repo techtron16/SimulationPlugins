@@ -39,6 +39,10 @@ class ControlGUI(Frame):
         self.__Button_stopGait.pack(side='right')
         self.__Frame7 = Frame(self.__Frame4,width=10)
         self.__Frame7.pack(side='left')
+        self.score = IntVar()
+        self.score.set(1000)
+        self.__Label_score = Label(self.__Frame7,textvariable=self.score,width=10)
+        self.__Label_score.pack(side='left')
         self.__Frame8 = Frame(self.__Frame4)
         self.__Frame8.pack(side='left')
         self.__Listbox_gait = Listbox(self.__Frame8,height=20,width=35)
@@ -69,7 +73,7 @@ class ControlGUI(Frame):
         Event handler for when the GUI is closed
         """
         self.communicator.Close()
-        #self.rungzserver.terminate()
+        self.rungzserver.terminate()
         #self.rungzclient.terminate()
         call(["pkill", "gzserver"])
         call(["pkill", "gzclient"])
@@ -232,7 +236,7 @@ try:
         App = ControlGUI(Root)
         App.pack(expand='yes',fill='both')
 
-        Root.geometry('640x480+10+10')
+        Root.geometry('700x480+10+10')
         Root.title('ControlGUI')
         Root.mainloop()
     #--------------------------------------------------------------------------#
